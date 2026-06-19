@@ -1,0 +1,20 @@
+name: Validate PR
+
+on: [pull_request_target]
+
+jobs:
+  validate-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head }}
+      
+      - name: Set base branch and PR info
+        run: |
+          echo "chekcout completed."
+          cat README.md
